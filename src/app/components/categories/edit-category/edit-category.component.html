@@ -1,0 +1,25 @@
+<div class="create-category">
+
+  <div class="create-category__fields">
+
+    <mat-form-field>
+      <input matInput placeholder="{{translation.items.categoryNameLabel}}" [(ngModel)]="_category.name">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="{{translation.items.categoryDescriptionLabel}}"
+                [(ngModel)]="_category.description"></textarea>
+    </mat-form-field>
+  </div>
+
+
+  <div class="create-category__actions">
+    <button mat-fab color="primary" (click)="_onSaveCategory()" [disabled]="!_category.name || !_category.description">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-fab color="warn" routerLink="/categories">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+
+

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "parties-app",
+    "staging": "parties-app"
+  }
+}

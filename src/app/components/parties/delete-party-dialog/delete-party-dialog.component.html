@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{translation.items.removePartyTitleLabel}}</h1>
+<div mat-dialog-content>
+  {{translation.items.removePartySubtitleLabel}} <strong>{{data.partyName}} </strong>?
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onDeleteClick()">
+    <mat-icon>delete</mat-icon>
+    {{translation.items.yesLabel}}
+  </button>
+  <button mat-button (click)="onNoClick()">{{translation.items.noLabel}}</button>
+  <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+</div>

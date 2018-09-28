@@ -1,0 +1,42 @@
+<div class="create-party">
+  <div class="create-party__fields">
+    <mat-form-field>
+      <input matInput placeholder="{{translation.items.partyNameLabel}}" [(ngModel)]="_party.name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="{{translation.items.addressLabel}}" [(ngModel)]="_party.address">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput placeholder="{{translation.items.descriptionLabel}}"
+                [(ngModel)]="_party.description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="{{translation.items.priceLabel}} ({{translation.items.pricePostfixLabeL}})"
+             type="number" [(ngModel)]="_party.price">
+    </mat-form-field>
+    <mat-form-field [hintLabel]="translation.items.dateHintLabel">
+      <input matInput [matDatepicker]="picker" placeholder="{{translation.items.dateLabel}}"
+             (dateInput)="dateSelected('input', $event)" (dateChange)="dateSelected('change', $event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker [startAt]="_party.date"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field [hintLabel]="translation.items.timeHintLabel">
+      <input matInput placeholder="{{translation.items.timeLabel}}" [(ngModel)]="_party.time">
+    </mat-form-field>
+    <mat-slide-toggle [(checked)]="_party.isFree">{{translation.items.freeEnterLabel}}</mat-slide-toggle>
+    <mat-form-field>
+      <mat-label>{{translation.items.categoryLabel}}</mat-label>
+      <mat-select #fontSize value="16px" (selectionChange)="_onSelectCategory($event)">
+        <mat-option *ngFor="let category of _categories" [value]="category">{{category.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="create-party__actions">
+    <button mat-fab color="primary" (click)="_onSaveParty()" [disabled]="!_isAllFieldsFilled()">
+      <mat-icon>done</mat-icon>
+    </button>
+    <button mat-fab color="warn" routerLink="/categories">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>

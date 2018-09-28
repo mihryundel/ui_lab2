@@ -1,0 +1,42 @@
+<div class="parties">
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let party of _parties, let i = index" [expanded]="i === 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <strong>{{party.name}}</strong>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{party.date | date:'dd/MM/yyyy'}} {{party.time}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="party__content">
+        <div class="party__content-row">{{party.description}}</div>
+        <div class="party__content-row"><strong>{{translation.items.categoryLabel}}:</strong> {{party.category.name}}
+        </div>
+        <div class="party__content-row"><strong>{{translation.items.placeLabel}}:</strong> {{party.address}}</div>
+        <div class="party__content-row">
+          <strong>{{translation.items.priceLabel}}:</strong>
+          <div *ngIf="party.price > 0"> {{party.price}} {{translation.items.pricePostfixLabeL}}</div>
+          <div *ngIf="party.price <= 0" style="color: #25fc14"> {{translation.items.freeLabeL}}</div>
+        </div>
+        <div class="party__content-row"><strong>{{translation.items.freeEnterLabel}}:</strong>
+          <div *ngIf="party.isFree" style="color: #25fc14">{{translation.items.yesLabel}}</div>
+          <div *ngIf="!party.isFree" style="color: #fc2240">{{translation.items.noLabel}}</div>
+        </div>
+      </div>
+      <mat-action-row>
+        <button mat-icon-button color="accent">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-button color="primary" routerLink="/edit-party/{{party.id}}">{{translation.items.editBtnLabel}}
+        </button>
+        <button mat-button color="warn" (click)="openDialog(party)">{{translation.items.removeBtnLabel}}</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+<button mat-fab routerLink="/create-party">
+  <mat-icon>add</mat-icon>
+</button>
